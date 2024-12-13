@@ -1,0 +1,32 @@
+{{define "leaderboard"}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1>Leaderboard</h1>
+    <button onclick="location.href='/mainMenu'">Back</button>
+    <table>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Stars</th>
+      </tr>
+      {{range .}}
+      <tr>
+        <td>{{.Rank}}</td>
+        <td>
+          <form action="/findUser" method="post">
+            <input type="hidden" name="username" value="{{.Username}}">
+            <button type="submit">{{.Username}}</button>
+          </form>
+        </td>
+        <td>{{.Stars}}</td>
+      </tr>
+      {{end}}
+    </table>
+  </body>
+</html>
+{{end}}

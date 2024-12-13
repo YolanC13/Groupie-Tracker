@@ -1,0 +1,21 @@
+{{define "userInfo"}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User information</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1>{{.Username}}</h1>
+    <h2>Stars: {{.Stars}}</h2>
+    <h2>Moons: {{.Moons}}</h2>
+    <h2>Coins: {{.Coins}}</h2>
+    <h2>UserCoins: {{.UserCoins}}</h2>
+    <h2>Diamonds: {{.Diamonds}}</h2>
+    <h2>Creator Points: {{.CreatorPoints}}</h2>
+    <h2>Demon level completed: {{.Demons}}</h2>
+    <h2>Global rank: {{.Rank}}</h2>
+    <button onclick="location.href='/searchMenu'">Back</button>
+  </body>
+</html>
+{{end}}

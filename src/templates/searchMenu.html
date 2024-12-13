@@ -1,0 +1,18 @@
+{{define "searchMenu"}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search menu</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1>Search menu</h1>
+    <button onclick="location.href='/mainMenu'">Back</button>
+
+    <form action="/findUser" method="post">
+      <input type="text" name="username" placeholder="Enter a Username" required>
+      <button type="submit">Search</button>
+    </form>
+  </body>
+</html>
+{{end}}
