@@ -3,9 +3,18 @@
 <html>
   <head>
     <title>User information</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
+    <nav class="navbar">
+      <div class="navdiv">
+        <ul>
+            <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+            <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+            <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+        </ul>
+      </div>
+    </nav>
     <h1>{{.Username}}</h1>
     <h2>Stars: {{.Stars}}</h2>
     <h2>Moons: {{.Moons}}</h2>

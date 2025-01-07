@@ -21,6 +21,17 @@ type User struct {
 	Rank          int    `json:"rank"`
 }
 
+type Pagination struct {
+	Items        []User
+	CurrentPage  int
+	ItemsPerPage int
+	TotalItems   int
+	TotalPages   int
+}
+
+var initialPage int = 1
+var CurrentLeaderboardPage *int = &initialPage
+
 func main() {
 	// Récupération du leaderboard
 	urlApi := "https://gdbrowser.com/api/leaderboard"
@@ -49,24 +60,12 @@ func main() {
 	}
 
 	var userList []User
+
 	errDecode := json.Unmarshal(body, &userList)
 	if errDecode != nil {
 		fmt.Printf("Error decoding JSON: %v\n", errDecode)
 		return
 	}
-
-	//Debug du Leaderboard
-	/*for i, user := range userList {
-		fmt.Printf("%d. %s\n", i+1, user.Username)
-		fmt.Printf("Stars: %d\n", user.Stars)
-		fmt.Printf("Moons: %d\n", user.Moons)
-		fmt.Printf("Demons: %d\n", user.Demons)
-		fmt.Printf("Coins: %d\n", user.Coins)
-		fmt.Printf("User coins: %d\n", user.UserCoins)
-		fmt.Printf("Diamonds: %d\n", user.Diamonds)
-		fmt.Printf("Creator points: %d\n", user.CreatorPoints)
-		fmt.Println("-------------------------------------------------")
-	}*/
 
 	temp, errTemp := template.ParseGlob("templates/*.html")
 	if errTemp != nil {
@@ -122,10 +121,55 @@ func main() {
 	})
 
 	http.HandleFunc("/leaderboard", func(w http.ResponseWriter, r *http.Request) {
-		temp.ExecuteTemplate(w, "leaderboard", userList)
+		page := CurrentLeaderboardPage
+		if *page == 0 {
+			*page = 1
+		}
+
+		itemsPerPage := 5
+		totalItems := 100
+		totalPages := 20
+
+		if *page > totalPages {
+			*page = totalPages
+		}
+
+		start := (*page - 1) * itemsPerPage
+		end := start + itemsPerPage
+		if end > totalItems {
+			end = totalItems
+		}
+
+		pagination := &Pagination{
+			Items:        userList[start:end],
+			CurrentPage:  *page,
+			ItemsPerPage: itemsPerPage,
+			TotalItems:   totalItems,
+			TotalPages:   totalPages,
+		}
+
+		temp.ExecuteTemplate(w, "leaderboard", pagination)
 	})
 
-	// Serveur
+	http.HandleFunc("/leaderboard/subtractPage", func(w http.ResponseWriter, r *http.Request) {
+		*CurrentLeaderboardPage--
+		http.Redirect(w, r, "/leaderboard", http.StatusSeeOther)
+	})
+
+	http.HandleFunc("/leaderboard/addPage", func(w http.ResponseWriter, r *http.Request) {
+		*CurrentLeaderboardPage++
+		http.Redirect(w, r, "/leaderboard", http.StatusSeeOther)
+	})
+
+	RunServer()
+}
+
+func RunServer() {
+	http.Handle("/styles/", http.StripPrefix("/styles/", http.FileServer(http.Dir("./templates"))))
+	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("./templates/img"))))
+	http.Handle("/videos/", http.StripPrefix("/videos/", http.FileServer(http.Dir("./templates/video"))))
+	http.Handle("/fonts/", http.StripPrefix("/fonts/", http.FileServer(http.Dir("./templates/font"))))
+
 	fmt.Println("Server started on localhost:8080")
 	http.ListenAndServe("localhost:8080", nil)
 }

@@ -3,12 +3,20 @@
 <html>
   <head>
     <title>Search menu</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
+    <nav class="navbar">
+      <div class="navdiv">
+        <ul>
+            <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+            <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+            <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+        </ul>
+      </div>
+    </nav>
     <h1>Search menu</h1>
     <button onclick="location.href='/mainMenu'">Back</button>
-
     <form action="/findUser" method="post">
       <input type="text" name="username" placeholder="Enter a Username" required>
       <button type="submit">Search</button>

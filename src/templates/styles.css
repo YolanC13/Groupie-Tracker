@@ -1,0 +1,249 @@
+@font-face {
+    font-family: 'Batmfo';
+    src: url('./font/batmfa__.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Conthrax';
+    src: url('./font/Conthrax-SemiBold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SquareOne';
+    src: url('./font/Square\ One.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Oxygene1';
+    src: url('./font/OXYGENE1.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Pusab';
+    src: url('./font/PUSAB___.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SquareOneBold';
+    src: url('./font/Square\ One\ Bold.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 7vmin;
+    font-family: 'Oxygene1';
+}
+
+p {
+    color: #ffffff;
+    font-size: 2vmin;
+    font-family: 'Conthrax';
+}
+
+span {
+    color: #ffffff;
+    font-size: 3vmin;
+    font-family: 'Conthrax';
+}
+
+.rankContainer {
+    position: relative;
+    width: 7vmin;
+    height: 7vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rankIcon {
+    width: 7vmin;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.rankText {
+    position: absolute;
+    color: #000;
+    font-family: 'SquareOneBold';
+    font-size: 2.5vmin;
+    text-align: center;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    top: 10%;
+}
+
+.leaderboardContainer {
+    padding-bottom: 5vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vmin;
+}
+
+.LeaderboardButton {
+    border: 0;
+    cursor: pointer;
+    cursor: pointer;
+    padding: 2vmin 3vmin 2vmin;
+    font-size: 4vmin;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    background: transparent;
+    font-family: 'Pusab';
+    transition: transform 200ms,background 200ms;
+}
+.LeaderboardButton:hover {
+    transform: translateY(-2px);
+}
+
+.leaderboard-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    max-width: 90%;
+    margin: auto;
+    padding: 3vmin;
+    border-radius: 2vmin;
+    text-align: center;
+    filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+}
+
+.leaderboard-box table {
+    width: 100%;
+    margin: -2vmin;
+}
+
+.starsText {
+    color: #fff700;
+    font-size: 3vmin;
+    font-family: 'Conthrax';
+}
+
+.starIcon {
+    width: 4vmin;
+    height: auto;
+    margin-left: 1vmin;
+}
+
+.leaderboardHeader {
+    color: #ffffff;
+    font-size: 5vmin;
+    margin-top: -50px;
+    text-align: center;
+    font-family: 'Conthrax';
+    padding: 7vmin;
+}
+
+.pagination {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    gap: 1vmin;
+    /*! margin: 4vmin auto; */
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1vmin 1vmin;
+    margin: 4vmin auto;
+}
+
+.pagination span {
+    display: inline-block;
+    min-width: 1vmin;
+    text-align: center;
+    color: #ffffff;
+    font-size: 3vmin;
+    font-family: 'Conthrax';
+}
+
+.LeftArrowButton, .RightArrowButton {
+    width: 5vmin;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Oxygene1';
+    color: #fff;
+    font-size: 3vmin;
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LeftArrowButton:hover, .RightArrowButton:hover {
+    transform: scale(1.2);
+}
+
+.welcomeText {
+    color: #ffffff;
+    font-size: 8vmin;
+    margin-top: 20vmin;
+    text-align: center;
+    font-family: 'Oxygene1';
+}
+
+.description-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    max-width: 77vmin;
+    margin: auto;
+    padding: 3vmin;
+    border-radius: 2vmin;
+    text-align: center;
+    font-family: 'Pusab';
+    font-size: 3vmin;
+    line-height: 1.6;
+    filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: blur(2vmin);
+    z-index: -1;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.642); 
+    font-family: Conthrax; 
+    padding-right: 3vmin;
+    padding-left: 3vmin;
+}
+
+.navdiv {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-end;
+}
+
+li {
+    list-style: none; 
+    display: inline-block;
+}
+
+li a {
+    color: rgb(140, 140, 140); 
+    font-size: 3vmin; 
+    margin-right: 2vmin;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+li a:hover {
+    color: #ffffff;
+    transform: scale(2.3);
+}

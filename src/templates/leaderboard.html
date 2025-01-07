@@ -3,30 +3,64 @@
 <html>
   <head>
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
-    <h1>Leaderboard</h1>
-    <button onclick="location.href='/mainMenu'">Back</button>
-    <table>
-      <tr>
-        <th>Rank</th>
-        <th>Name</th>
-        <th>Stars</th>
-      </tr>
-      {{range .}}
-      <tr>
-        <td>{{.Rank}}</td>
-        <td>
-          <form action="/findUser" method="post">
-            <input type="hidden" name="username" value="{{.Username}}">
-            <button type="submit">{{.Username}}</button>
-          </form>
-        </td>
-        <td>{{.Stars}}</td>
-      </tr>
-      {{end}}
-    </table>
+    <nav class="navbar">
+      <div class="navdiv">
+        <ul>
+            <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+            <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+            <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="leaderboardContainer">
+      <div class="leaderboardHeader">
+        <h1>GLOBAL LEADERBOARD</h1>
+        <p>Rankings are based on the number of stars collected by each player.</p>
+        <p>Click on a player's name to view their information.</p>
+      </div>
+      <div class="leaderboard-box">
+        <table>
+        {{range .Items}}
+          <tr>
+            <td>
+              <div class="rankContainer">
+                {{if eq .Rank 1}}
+                  <img src="/images/gold.png" class="rankIcon">
+                {{else if eq .Rank 2}}
+                  <img src="/images/silver.png" class="rankIcon">
+                {{else if eq .Rank 3}}
+                  <img src="/images/bronze.png" class="rankIcon">
+                {{else}}
+                  <img src="/images/bronze.png" class="rankIcon">
+                {{end}}
+                <p class="rankText">{{.Rank}}</p>
+              </div>
+            </td>
+            <td>
+              <form action="/findUser" method="post">
+                <input type="hidden" name="username" value="{{.Username}}">
+                <button type="submit" class="LeaderboardButton">{{.Username}}</button>
+              </form>
+            </td>
+            <td class="starsText">{{.Stars}}</td>
+            <td><img src="/images/star.png" class="starIcon"></td>
+          </tr>
+        {{end}}
+        </table>
+      </div>
+      <div class="pagination">
+        {{if gt .CurrentPage 1}}
+            <button class="LeftArrowButton" onclick="location.href='/leaderboard/subtractPage'">&lt;</button>
+        {{end}}
+        <span>Page {{.CurrentPage}} of {{.TotalPages}}</span>     
+        {{if lt .CurrentPage .TotalPages}}
+            <button class="RightArrowButton" onclick="location.href='/leaderboard/addPage'">></button>
+        {{end}}
+      </div>
+    </div>
   </body>
 </html>
 {{end}}

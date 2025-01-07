@@ -3,12 +3,27 @@
 <html>
   <head>
     <title>Main menu</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
-    <h1>Welcome to GDSearch</h1>
-    <button onclick="location.href='/searchMenu'">Search</button>
-    <button onclick="location.href='/leaderboard'">Leaderboard</button>
+    <nav class="navbar">
+      <div class="navdiv">
+        <ul>
+            <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+            <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+            <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+        </ul>
+      </div>
+    </nav>
+    <video autoplay muted loop id="myVideo" disablePictureInPicture controlsList="nodownload">
+      <source src="/videos/bgVideo.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+      <h1 class="welcomeText">WELCOME TO GDSEARCH</h1>
+      <div class="description-box">
+        GDSearch is your ultimate destination for exploring user's data on the game Geometry Dash. 
+        You can search for a user, view their information, and see the leaderboard of the top players in the game.
+    </div>
   </body>
 </html>
 {{end}}
