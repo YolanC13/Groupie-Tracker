@@ -40,6 +40,11 @@ h1 {
     font-family: 'Oxygene1';
 }
 
+h2 {
+    color: #ffffff;
+    font-family: 'Pusab';
+}
+
 p {
     color: #ffffff;
     font-size: 2vmin;
@@ -116,6 +121,23 @@ span {
     border-radius: 2vmin;
     text-align: center;
     filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+}
+
+.userInfo-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    max-width: 90%;
+    margin: auto;
+    padding: 3vmin;
+    border-radius: 2vmin;
+    text-align: center;
+    filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+    padding-bottom: 5vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vmin;
 }
 
 .leaderboard-box table {
@@ -208,6 +230,17 @@ span {
     filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
 }
 
+.Statscontainer {
+    margin-top: 5vmin;
+    color: #ffffff;
+}
+
+.UserInfoContainer {
+    display: flex;
+    margin-top: 5vmin;
+    justify-content: center;
+}
+
 #myVideo {
     position: fixed;
     right: 0;
@@ -229,6 +262,43 @@ span {
     display: flex;
     align-items: center; 
     justify-content: flex-end;
+}
+
+.infoIcon{
+    width: 4vmin;
+    height: 4vmin;
+    margin-right: 1vmin;
+    top: 10%;
+}
+
+.user-stats-table {
+    width: 100%;
+    border-spacing: 0 1vmin;
+}
+  
+.stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1vmin 0;
+}
+
+.stat-text {
+    min-width: 15vmin;
+    text-align: right;
+    margin-right: 2vmin;
+}
+
+.stat-icon {
+    width: 4vmin;
+    height: 4vmin;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1vmin;
+    align-items: center;
 }
 
 li {

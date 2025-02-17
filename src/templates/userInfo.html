@@ -4,26 +4,74 @@
   <head>
     <title>User information</title>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+      <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
     <nav class="navbar">
       <div class="navdiv">
         <ul>
-            <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
-            <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
-            <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+          <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+          <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+          <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
         </ul>
       </div>
     </nav>
+    <div class="rankContainer">
+      {{if eq .Rank 1}}
+        <img src="/images/gold.png" class="rankIcon">
+      {{else if eq .Rank 2}}
+        <img src="/images/silver.png" class="rankIcon">
+      {{else if eq .Rank 3}}
+        <img src="/images/bronze.png" class="rankIcon">
+      {{else}}
+        <img src="/images/bronze.png" class="rankIcon">
+      {{end}}
+      <p class="rankText">{{.Rank}}</p>
+    </div>
     <h1>{{.Username}}</h1>
-    <h2>Stars: {{.Stars}}</h2>
-    <h2>Moons: {{.Moons}}</h2>
-    <h2>Coins: {{.Coins}}</h2>
-    <h2>UserCoins: {{.UserCoins}}</h2>
-    <h2>Diamonds: {{.Diamonds}}</h2>
-    <h2>Creator Points: {{.CreatorPoints}}</h2>
-    <h2>Demon level completed: {{.Demons}}</h2>
-    <h2>Global rank: {{.Rank}}</h2>
+    <div class="userInfo-box">
+      <div class="stats-container">
+        <div class="stat-row">
+          <h2 class="stat-text">{{.Stars}}</h2>
+          <img src="/images/star.png" class="stat-icon">
+        </div>
+        <div class="stat-row">
+          <h2 class="stat-text">{{.Moons}}</h2>
+          <img src="/images/moon.png" class="stat-icon">
+        </div>
+        <div class="stat-row">
+          <h2 class="stat-text">{{.Coins}}</h2>
+          <img src="/images/coin.png" class="stat-icon">
+        </div>
+        <div class="stat-row">
+          <h2 class="stat-text">{{.UserCoins}}</h2>
+          <img src="/images/silvercoin.png" class="stat-icon">
+        </div>
+        <div class="stat-row">
+          <h2 class="stat-text">{{.Diamonds}}</h2>
+          <img src="/images/diamond.png" class="stat-icon">
+        </div>
+        <div class="stat-row">
+          <h2 class="stat-text">{{.CreatorPoints}}</h2>
+          <img src="/images/cp.png" class="stat-icon">
+        </div>
+        <div class="stat-row">
+          <h2 class="stat-text">{{.Demons}}</h2>
+          <img src="/images/demon.png" class="stat-icon">
+        </div>
+      </div>
+    </div>
+    {{if .IsPinned}}
+      <form action="/unPinUser" method="post">
+        <input type="hidden" name="username" value="{{.Username}}">
+        <button type="submit">Unpin Profile</button>
+      </form>
+    {{else}}
+      <form action="/pinUser" method="post">
+        <input type="hidden" name="username" value="{{.Username}}">
+        <button type="submit">Pin Profile</button>
+      </form>
+    {{end}}
     <button onclick="location.href='/searchMenu'">Back</button>
   </body>
 </html>

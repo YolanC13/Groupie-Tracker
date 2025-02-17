@@ -15,12 +15,20 @@
         </ul>
       </div>
     </nav>
-    <h1>Search menu</h1>
-    <button onclick="location.href='/mainMenu'">Back</button>
+    <h1>SEARCH MENU</h1>
     <form action="/findUser" method="post">
       <input type="text" name="username" placeholder="Enter a Username" required>
       <button type="submit">Search</button>
     </form>
+    {{if .PinnedUsers}}
+    <h1>PINNED USERS</h1>
+    {{range .PinnedUsers}}
+      <form action="/findUser" method="post">
+        <input type="hidden" name="username" value="{{.}}">
+        <button type="submit" class="LeaderboardButton">{{.}}</button>
+      </form>
+    {{end}}
+    {{end}}
   </body>
 </html>
 {{end}}
