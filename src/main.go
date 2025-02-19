@@ -243,6 +243,7 @@ func RunServer() {
 	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("./templates/img"))))
 	http.Handle("/videos/", http.StripPrefix("/videos/", http.FileServer(http.Dir("./templates/video"))))
 	http.Handle("/fonts/", http.StripPrefix("/fonts/", http.FileServer(http.Dir("./templates/font"))))
+	http.Handle("/scripts/", http.StripPrefix("/scripts/", http.FileServer(http.Dir("./templates/scripts"))))
 
 	fmt.Println("Server started on localhost:8080")
 	http.ListenAndServe("localhost:8080", nil)
@@ -329,3 +330,13 @@ func CheckIsPinned(username string) bool {
 
 	return false
 }
+
+/*func LeaderboardFilter(userList []User, page int, itemsPerPage int) []User {
+	start := (page - 1) * itemsPerPage
+	end := start + itemsPerPage
+	if end > len(userList) {
+		end = len(userList)
+	}
+
+	return userList[start:end]
+}*/

@@ -4,7 +4,6 @@
   <head>
     <title>User information</title>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css">
-      <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
     <nav class="navbar">
@@ -16,63 +15,72 @@
         </ul>
       </div>
     </nav>
-    <div class="rankContainer">
-      {{if eq .Rank 1}}
-        <img src="/images/gold.png" class="rankIcon">
-      {{else if eq .Rank 2}}
-        <img src="/images/silver.png" class="rankIcon">
-      {{else if eq .Rank 3}}
-        <img src="/images/bronze.png" class="rankIcon">
-      {{else}}
-        <img src="/images/bronze.png" class="rankIcon">
-      {{end}}
-      <p class="rankText">{{.Rank}}</p>
-    </div>
-    <h1>{{.Username}}</h1>
-    <div class="userInfo-box">
-      <div class="stats-container">
-        <div class="stat-row">
-          <h2 class="stat-text">{{.Stars}}</h2>
-          <img src="/images/star.png" class="stat-icon">
+    <div class="leaderboardContainer">
+      <div class="leaderboardHeader">
+        <div class="rankContainer" style="margin: 0 auto;">
+          {{if eq .Rank 1}}
+            <img src="/images/gold.png" class="rankIcon">
+          {{else if eq .Rank 2}}
+            <img src="/images/silver.png" class="rankIcon">
+          {{else if eq .Rank 3}}
+            <img src="/images/bronze.png" class="rankIcon">
+          {{else}}
+            <img src="/images/bronze.png" class="rankIcon">
+          {{end}}
+          <p class="rankText">{{.Rank}}</p>
         </div>
-        <div class="stat-row">
-          <h2 class="stat-text">{{.Moons}}</h2>
-          <img src="/images/moon.png" class="stat-icon">
-        </div>
-        <div class="stat-row">
-          <h2 class="stat-text">{{.Coins}}</h2>
-          <img src="/images/coin.png" class="stat-icon">
-        </div>
-        <div class="stat-row">
-          <h2 class="stat-text">{{.UserCoins}}</h2>
-          <img src="/images/silvercoin.png" class="stat-icon">
-        </div>
-        <div class="stat-row">
-          <h2 class="stat-text">{{.Diamonds}}</h2>
-          <img src="/images/diamond.png" class="stat-icon">
-        </div>
-        <div class="stat-row">
-          <h2 class="stat-text">{{.CreatorPoints}}</h2>
-          <img src="/images/cp.png" class="stat-icon">
-        </div>
-        <div class="stat-row">
-          <h2 class="stat-text">{{.Demons}}</h2>
-          <img src="/images/demon.png" class="stat-icon">
+        <h1>{{.Username}}</h1>
+        <p>Player Statistics</p>
+      </div>
+      <div class="leaderboard-box">
+        <div class="stats-container">
+          <table class="user-stats-table">
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.Stars}}</h2></td>
+              <td><img src="/images/star.png" class="stat-icon"></td>
+            </tr>
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.Moons}}</h2></td>
+              <td><img src="/images/moon.png" class="stat-icon"></td>
+            </tr>
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.Coins}}</h2></td>
+              <td><img src="/images/coin.png" class="stat-icon"></td>
+            </tr>
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.UserCoins}}</h2></td>
+              <td><img src="/images/silvercoin.png" class="stat-icon"></td>
+            </tr>
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.Diamonds}}</h2></td>
+              <td><img src="/images/diamond.png" class="stat-icon"></td>
+            </tr>
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.CreatorPoints}}</h2></td>
+              <td><img src="/images/cp.png" class="stat-icon"></td>
+            </tr>
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.Demons}}</h2></td>
+              <td><img src="/images/demon.png" class="stat-icon"></td>
+            </tr>
+          </table>
         </div>
       </div>
+      <div class="user-actions" style="margin-top: 2vmin;">
+        {{if .IsPinned}}
+          <form action="/unPinUser" method="post" style="display: inline-block; margin: 0 1vmin;">
+            <input type="hidden" name="username" value="{{.Username}}">
+            <button type="submit" class="LeaderboardButton">Unpin Profile</button>
+          </form>
+        {{else}}
+          <form action="/pinUser" method="post" style="display: inline-block; margin: 0 1vmin;">
+            <input type="hidden" name="username" value="{{.Username}}">
+            <button type="submit" class="LeaderboardButton">Pin Profile</button>
+          </form>
+        {{end}}
+        <button onclick="location.href='/searchMenu'" class="LeaderboardButton">Back</button>
+      </div>
     </div>
-    {{if .IsPinned}}
-      <form action="/unPinUser" method="post">
-        <input type="hidden" name="username" value="{{.Username}}">
-        <button type="submit">Unpin Profile</button>
-      </form>
-    {{else}}
-      <form action="/pinUser" method="post">
-        <input type="hidden" name="username" value="{{.Username}}">
-        <button type="submit">Pin Profile</button>
-      </form>
-    {{end}}
-    <button onclick="location.href='/searchMenu'">Back</button>
   </body>
 </html>
 {{end}}

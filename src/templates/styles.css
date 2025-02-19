@@ -28,6 +28,40 @@
     src: url('./font/Square\ One\ Bold.ttf') format('truetype');
 }
 
+/*Transition for view transitions*/
+
+@keyframes move-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes move-in {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.page-exit .contentContainer {
+    animation: move-out 0.4s ease-in-out both;
+}
+
+.contentContainer {
+    animation: move-in 0.4s ease-in-out both;
+}
+
+/*General Styles*/
+
 body {
     margin: 0;
     padding: 0;
@@ -108,19 +142,24 @@ span {
     font-family: 'Pusab';
     transition: transform 200ms,background 200ms;
 }
+
 .LeaderboardButton:hover {
+    transform: translateY(-2px);
+}
+
+.pinnedUserButton:hover{
     transform: translateY(-2px);
 }
 
 .leaderboard-box {
     background-color: rgba(0, 0, 0, 0.3);
     color: #ffffff;
-    max-width: 90%;
-    margin: auto;
-    padding: 3vmin;
+    max-width: -15.0%;
+    padding: 4.4vmin;
     border-radius: 2vmin;
     text-align: center;
     filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+    margin-top: -7vmin;
 }
 
 .userInfo-box {
@@ -160,7 +199,7 @@ span {
 .leaderboardHeader {
     color: #ffffff;
     font-size: 5vmin;
-    margin-top: -50px;
+    margin-top: -45.8px;
     text-align: center;
     font-family: 'Conthrax';
     padding: 7vmin;
@@ -172,8 +211,7 @@ span {
     justify-content: center;
     align-items: center;
     gap: 1vmin;
-    /*! margin: 4vmin auto; */
-    bottom: 0%;
+    bottom: -7.5%;
     left: 50%;
     transform: translateX(-50%);
     padding: 1vmin 1vmin;
@@ -300,6 +338,71 @@ span {
     gap: 1vmin;
     align-items: center;
 }
+
+.user-stats-table {
+    width: 100%;
+    border-spacing: 0 2vmin;
+    margin: 0 auto;
+}
+
+.user-stats-table .stat-row {
+    transition: transform 0.2s ease;
+}
+
+.user-stats-table .stat-row:hover {
+    transform: scale(1.05);
+}
+
+.user-stats-table .stat-text {
+    text-align: right;
+    padding-right: 2vmin;
+    width: 50%;
+}
+
+.user-stats-table .stat-text h2 {
+    margin: 0;
+    font-size: 3vmin;
+}
+
+.user-stats-table .stat-icon {
+    width: 4vmin;
+    height: 4vmin;
+    vertical-align: middle;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: center;
+    gap: 2vmin;
+}
+
+.user-actions .LeaderboardButton{
+    font-size: 2.5vmin;
+    padding: 1vmin 2vmin;
+}
+
+.leaderboardContainer {
+    padding-bottom: 5vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vmin;
+}
+
+.pinnedUserButton {
+    border: 0;
+    cursor: pointer;
+    cursor: pointer;
+    padding: 2vmin 3vmin 2vmin;
+    font-size: 4vmin;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff700;
+    background: transparent;
+    font-family: 'Pusab';
+    transition: transform 200ms,background 200ms;
+  }
 
 li {
     list-style: none; 

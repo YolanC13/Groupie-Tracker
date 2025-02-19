@@ -15,20 +15,30 @@
         </ul>
       </div>
     </nav>
-    <h1>SEARCH MENU</h1>
-    <form action="/findUser" method="post">
-      <input type="text" name="username" placeholder="Enter a Username" required>
-      <button type="submit">Search</button>
-    </form>
-    {{if .PinnedUsers}}
-    <h1>PINNED USERS</h1>
-    {{range .PinnedUsers}}
+    <div class="contentContainer">
+    <div class="leaderboardContainer">
+      <div class="leaderboardHeader">
+        <h1>SEARCH MENU</h1>
+        <p>Enter a username to search for a specific user.</p>
+      </div>
       <form action="/findUser" method="post">
-        <input type="hidden" name="username" value="{{.}}">
-        <button type="submit" class="LeaderboardButton">{{.}}</button>
+        <input type="text" name="username" placeholder="Enter a Username" required>
+        <button type="submit">Search</button>
       </form>
-    {{end}}
-    {{end}}
+      <h1>PINNED USERS</h1>
+      {{if .PinnedUsers}}
+        {{range .PinnedUsers}}
+          <form action="/findUser" method="post">
+            <input type="hidden" name="username" value="{{.}}">
+            <button type="submit" class="pinnedUserButton">- {{.}}</button>
+          </form>
+        {{end}}
+      {{else}}
+        <p>No pinned users yet.</p>
+      {{end}}
+    </div>
+  </div>
+  <script src="/scripts/pageTransitions.js"></script>
   </body>
 </html>
 {{end}}
