@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"sort"
 	"strings"
 	"time"
 )
@@ -39,11 +40,12 @@ type Level struct {
 }
 
 type Pagination struct {
-	Items        []User
-	CurrentPage  int
-	ItemsPerPage int
-	TotalItems   int
-	TotalPages   int
+	Items         []User
+	CurrentPage   int
+	ItemsPerPage  int
+	TotalItems    int
+	TotalPages    int
+	CurrentFilter string
 }
 
 var initialPage int = 1
@@ -200,6 +202,33 @@ func main() {
 			*page = 1
 		}
 
+		filter := r.URL.Query().Get("filter")
+		if filter == "" {
+			filter = "stars"
+		}
+
+		sortedList := make([]User, len(userList))
+		copy(sortedList, userList)
+
+		switch filter {
+		case "stars":
+			sort.Slice(sortedList, func(i, j int) bool {
+				return sortedList[i].Stars > sortedList[j].Stars
+			})
+		case "diamonds":
+			sort.Slice(sortedList, func(i, j int) bool {
+				return sortedList[i].Diamonds > sortedList[j].Diamonds
+			})
+		case "coins":
+			sort.Slice(sortedList, func(i, j int) bool {
+				return sortedList[i].UserCoins > sortedList[j].UserCoins
+			})
+		}
+
+		for i := range sortedList {
+			sortedList[i].Rank = i + 1
+		}
+
 		itemsPerPage := 5
 		totalItems := 100
 		totalPages := 20
@@ -215,11 +244,12 @@ func main() {
 		}
 
 		pagination := &Pagination{
-			Items:        userList[start:end],
-			CurrentPage:  *page,
-			ItemsPerPage: itemsPerPage,
-			TotalItems:   totalItems,
-			TotalPages:   totalPages,
+			Items:         sortedList[start:end],
+			CurrentPage:   *page,
+			ItemsPerPage:  itemsPerPage,
+			TotalItems:    totalItems,
+			TotalPages:    totalPages,
+			CurrentFilter: filter,
 		}
 
 		temp.ExecuteTemplate(w, "leaderboard", pagination)
@@ -330,13 +360,3 @@ func CheckIsPinned(username string) bool {
 
 	return false
 }
-
-/*func LeaderboardFilter(userList []User, page int, itemsPerPage int) []User {
-	start := (page - 1) * itemsPerPage
-	end := start + itemsPerPage
-	if end > len(userList) {
-		end = len(userList)
-	}
-
-	return userList[start:end]
-}*/

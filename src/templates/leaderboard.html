@@ -16,53 +16,78 @@
       </div>
     </nav>
     <div class="contentContainer">
-    <div class="leaderboardContainer">
-      <div class="leaderboardHeader">
-        <h1>GLOBAL LEADERBOARD</h1>
-        <p>Rankings are based on the number of stars collected by each player.</p>
-        <p>Click on a player's name to view their information.</p>
-      </div>
-      <div class="leaderboard-box">
-        <table>
-        {{range .Items}}
-          <tr>
-            <td>
-              <div class="rankContainer">
-                {{if eq .Rank 1}}
-                  <img src="/images/gold.png" class="rankIcon">
-                {{else if eq .Rank 2}}
-                  <img src="/images/silver.png" class="rankIcon">
-                {{else if eq .Rank 3}}
-                  <img src="/images/bronze.png" class="rankIcon">
-                {{else}}
-                  <img src="/images/bronze.png" class="rankIcon">
-                {{end}}
-                <p class="rankText">{{.Rank}}</p>
-              </div>
-            </td>
-            <td>
-              <form action="/findUser" method="post">
-                <input type="hidden" name="username" value="{{.Username}}">
-                <button type="submit" class="LeaderboardButton">{{.Username}}</button>
-              </form>
-            </td>
-            <td class="starsText">{{.Stars}}</td>
-            <td><img src="/images/star.png" class="starIcon"></td>
-          </tr>
-        {{end}}
-        </table>
-      </div>
-      <div class="pagination">
-        {{if gt .CurrentPage 1}}
-            <button class="LeftArrowButton" onclick="location.href='/leaderboard/subtractPage'">&lt;</button>
-        {{end}}
-        <span>Page {{.CurrentPage}} of {{.TotalPages}}</span>     
-        {{if lt .CurrentPage .TotalPages}}
-            <button class="RightArrowButton" onclick="location.href='/leaderboard/addPage'">></button>
-        {{end}}
+      <div class="leaderboardContainer">
+        <div class="leaderboardHeader">
+          <h1>GLOBAL LEADERBOARD</h1>
+          <p>Click on a player's name to view their information.</p>
+          <div class="filterContainer">
+            <form action="/leaderboard" method="get">
+              <label for="filter" style="color: white; font-family: 'Conthrax'; font-size: 2vmin;">Sort by:</label>
+              <select name="filter" id="filter" onchange="this.form.submit()" style="font-family: 'Conthrax'; font-size: 2vmin; padding: 0.5vmin; margin-left: 1vmin; background-color: rgba(0, 0, 0, 0.7); color: white; border: 1px solid white; border-radius: 0.5vmin;">
+                <option value="stars" {{if eq .CurrentFilter "stars"}}selected{{end}}>Stars</option>
+                <option value="diamonds" {{if eq .CurrentFilter "diamonds"}}selected{{end}}>Diamonds</option>
+                <option value="userCoins" {{if eq .CurrentFilter "userCoins"}}selected{{end}}>User Coins</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        <div class="leaderboard-box">
+          <table>
+            {{range .Items}}
+              <tr>
+                <td>
+                  <div class="rankContainer">
+                    {{if eq .Rank 1}}
+                      <img src="/images/gold.png" class="rankIcon">
+                    {{else if eq .Rank 2}}
+                      <img src="/images/silver.png" class="rankIcon">
+                    {{else if eq .Rank 3}}
+                      <img src="/images/bronze.png" class="rankIcon">
+                    {{else}}
+                      <img src="/images/bronze.png" class="rankIcon">
+                    {{end}}
+                    <p class="rankText">{{.Rank}}</p>
+                  </div>
+                </td>
+                <td>
+                  <form action="/findUser" method="post">
+                    <input type="hidden" name="username" value="{{.Username}}">
+                    <button type="submit" class="LeaderboardButton">{{.Username}}</button>
+                  </form>
+                </td>
+                <td class="starsText">
+                  {{if eq $.CurrentFilter "stars"}}
+                    {{.Stars}}
+                  {{else if eq $.CurrentFilter "diamonds"}}
+                    {{.Diamonds}}
+                  {{else if eq $.CurrentFilter "userCoins"}}
+                    {{.UserCoins}}
+                  {{end}}
+                </td>
+                <td>
+                  {{if eq $.CurrentFilter "stars"}}
+                    <img src="/images/star.png" class="starIcon">
+                  {{else if eq $.CurrentFilter "diamonds"}}
+                    <img src="/images/diamond.png" class="starIcon">
+                  {{else if eq $.CurrentFilter "userCoins"}}
+                    <img src="/images/silvercoin.png" class="starIcon">
+                  {{end}}
+                </td>
+              </tr>
+            {{end}}
+          </table>
+        </div>
+        <div class="pagination">
+          {{if gt .CurrentPage 1}}
+            <a href="/leaderboard/subtractPage?filter={{.CurrentFilter}}" class="LeftArrowButton" style="text-decoration: none;">&lt;</a>
+          {{end}}
+          <span>Page {{.CurrentPage}} of {{.TotalPages}}</span>     
+          {{if lt .CurrentPage .TotalPages}}
+            <a href="/leaderboard/addPage?filter={{.CurrentFilter}}" class="RightArrowButton" style="text-decoration: none;">&gt;</a>
+          {{end}}
+        </div>
       </div>
     </div>
-  </div>
   </body>
   <script src="/scripts/pageTransitions.js"></script>
 </html>

@@ -16,25 +16,24 @@
       </div>
     </nav>
     <div class="leaderboardContainer">
-      <div class="leaderboardHeader">
-        <div class="rankContainer" style="margin: 0 auto;">
-          {{if eq .Rank 1}}
-            <img src="/images/gold.png" class="rankIcon">
-          {{else if eq .Rank 2}}
-            <img src="/images/silver.png" class="rankIcon">
-          {{else if eq .Rank 3}}
-            <img src="/images/bronze.png" class="rankIcon">
-          {{else}}
-            <img src="/images/bronze.png" class="rankIcon">
-          {{end}}
-          <p class="rankText">{{.Rank}}</p>
-        </div>
         <h1>{{.Username}}</h1>
         <p>Player Statistics</p>
       </div>
-      <div class="leaderboard-box">
+      <div class="userInfo-box">
         <div class="stats-container">
           <table class="user-stats-table">
+            <tr class="stat-row">
+              <td class="stat-text"><h2>{{.Rank}}</h2></td>
+              <td>{{if eq .Rank 1}}
+                <img src="/images/gold.png" class="stat-icon">
+              {{else if eq .Rank 2}}
+                <img src="/images/silver.png" class="stat-icon">
+              {{else if eq .Rank 3}}
+                <img src="/images/bronze.png" class="stat-icon">
+              {{else}}
+                <img src="/images/bronze.png" class="stat-icon">
+              {{end}}</td>
+            </tr>
             <tr class="stat-row">
               <td class="stat-text"><h2>{{.Stars}}</h2></td>
               <td><img src="/images/star.png" class="stat-icon"></td>
