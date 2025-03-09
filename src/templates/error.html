@@ -1,0 +1,27 @@
+{{define "error"}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDBrowser | Error</title>
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navdiv">
+        <ul>
+          <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+          <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+          <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="leaderboardContainer">
+      <h1>ERROR</h1>
+      <p>{{.}}</p>
+    </div>
+    <div class="user-actions" style="margin-top: 2vmin;">
+      <button onclick="location.href='/searchMenu'" class="LeaderboardButton">Back</button>
+    </div>
+  </body>
+</html>
+{{end}}

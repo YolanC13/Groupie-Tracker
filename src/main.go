@@ -28,15 +28,15 @@ type User struct {
 }
 
 type Level struct {
-	Name       string `json:"name"`
-	ID         int    `json:"id"`
-	Author     int    `json:"author"`
-	PlayerID   int    `json:"playerID"`
-	Difficulty string `json:"difficulty"`
-	Downloads  int    `json:"downloads"`
-	Likes      int    `json:"likes"`
-	Length     string `json:"length"`
-	SongName   int    `json:"songName"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Author      string `json:"author"`
+	PlayerID    string `json:"playerID"`
+	Difficulty  string `json:"difficulty"`
+	Downloads   int    `json:"downloads"`
+	Likes       int    `json:"likes"`
+	Length      string `json:"length"`
+	SongName    string `json:"songName"`
 }
 
 type Pagination struct {
@@ -101,11 +101,16 @@ func main() {
 
 	http.HandleFunc("/searchMenu", func(w http.ResponseWriter, r *http.Request) {
 		data := struct {
-			PinnedUsers []string
-			AllUsers    []User
+			PinnedUsers   []string
+			AllUsers      []User
+			CurrentFilter string
 		}{
-			PinnedUsers: InitializeFavorite(),
-			AllUsers:    userList,
+			PinnedUsers:   InitializeFavorite(),
+			AllUsers:      userList,
+			CurrentFilter: r.URL.Query().Get("SearchFilter"),
+		}
+		if data.CurrentFilter == "" {
+			data.CurrentFilter = "user"
 		}
 		temp.ExecuteTemplate(w, "searchMenu", data)
 	})
@@ -137,7 +142,12 @@ func main() {
 
 			errDecode := json.Unmarshal(body, &userToFind)
 			if errDecode != nil {
-				fmt.Printf("Error decoding JSON: %v\n", errDecode)
+				if strings.Contains(errDecode.Error(), "unexpected end of JSON input") ||
+					len(body) == 0 || string(body) == "-1" {
+					w.WriteHeader(http.StatusNotFound)
+					temp.ExecuteTemplate(w, "error", "User not found. Please check the username and try again.")
+					return
+				}
 				return
 			}
 
@@ -176,11 +186,17 @@ func main() {
 
 			errDecode := json.Unmarshal(body, &levelToFind)
 			if errDecode != nil {
-				fmt.Printf("Error decoding JSON: %v\n", errDecode)
+				if strings.Contains(errDecode.Error(), "unexpected end of JSON input") ||
+					len(body) == 0 || string(body) == "-1" {
+					w.WriteHeader(http.StatusNotFound)
+					temp.ExecuteTemplate(w, "error", "Level not found. Please check the ID and try again.")
+					return
+				}
 				return
 			}
 
-			temp.ExecuteTemplate(w, "userInfo", levelToFind)
+			levelToFind.Name = strings.ToUpper(levelToFind.Name)
+			temp.ExecuteTemplate(w, "levelInfo", levelToFind)
 		}
 	})
 
@@ -192,6 +208,10 @@ func main() {
 	http.HandleFunc("/unPinUser", func(w http.ResponseWriter, r *http.Request) {
 		UnPinUser(r.FormValue("username"))
 		http.Redirect(w, r, "/searchMenu", http.StatusSeeOther)
+	})
+
+	http.HandleFunc("/faqMenu", func(w http.ResponseWriter, r *http.Request) {
+		temp.ExecuteTemplate(w, "faqMenu", nil)
 	})
 
 	//Leaderboard
@@ -219,7 +239,7 @@ func main() {
 			sort.Slice(sortedList, func(i, j int) bool {
 				return sortedList[i].Diamonds > sortedList[j].Diamonds
 			})
-		case "coins":
+		case "userCoins":
 			sort.Slice(sortedList, func(i, j int) bool {
 				return sortedList[i].UserCoins > sortedList[j].UserCoins
 			})

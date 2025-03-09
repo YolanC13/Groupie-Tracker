@@ -1,0 +1,57 @@
+{{define "levelInfo"}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDBrowser | Level information</title>
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navdiv">
+        <ul>
+          <li><a href="/mainMenu" style="text-decoration: none;">Home</a></li>
+          <li><a href="/searchMenu" style="text-decoration: none;">Search</a></li>
+          <li><a href="/leaderboard" style="text-decoration: none;">Leaderboard</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="leaderboardContainer">
+      <h1>{{.Name}}</h1>
+      <p>{{.Description}}</p>
+    </div>
+    <div class="userInfo-box">
+      <div class="stats-container">
+        <table class="user-stats-table">
+          <tr class="stat-row">
+            <td class="stat-text"><h2>Author ID:</h2></td>
+            <td><span>{{.Author}}</span></td>
+          </tr>
+          <tr class="stat-row">
+            <td class="stat-text"><h2>Difficulty:</h2></td>
+            <td><span>{{.Difficulty}}</span></td>
+          </tr>
+          <tr class="stat-row">
+            <td class="stat-text"><h2>Length:</h2></td>
+            <td><span>{{.Length}}</span></td>
+          </tr>
+          <tr class="stat-row">
+            <td class="stat-text"><h2>Downloads:</h2></td>
+            <td><span>{{.Downloads}}</span></td>
+          </tr>
+          <tr class="stat-row">
+            <td class="stat-text"><h2>Likes:</h2></td>
+            <td><span>{{.Likes}}</span></td>
+          </tr>
+          <tr class="stat-row">
+            <td class="stat-text"><h2>Song ID:</h2></td>
+            <td><span>{{.SongName}}</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="user-actions" style="margin-top: 2vmin;">
+      <button onclick="location.href='/searchMenu'" class="LeaderboardButton">Back</button>
+    </div>
+  </body>
+</html>
+{{end}}

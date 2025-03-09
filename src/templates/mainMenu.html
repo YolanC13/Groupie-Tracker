@@ -1,7 +1,7 @@
 {{define "mainMenu"}}
 <!DOCTYPE html>
   <head>
-    <title>Menu principal</title>
+    <title>GDBrowser | Main Menu</title>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body> 
@@ -23,6 +23,9 @@
       <div class="description-box">
         GDSearch is your ultimate destination for exploring user's data on the game Geometry Dash. 
         You can search for a user, view their information, and see the leaderboard of the top players in the game.
+        <form action="/faqMenu" method="post">
+          <button type="submit" class="LeaderboardButton">FAQ</button>
+        </form>
     </div>
   </div>
   <script src="/scripts/pageTransitions.js"></script>

@@ -1,9 +1,4 @@
 @font-face {
-    font-family: 'Batmfo';
-    src: url('./font/batmfa__.ttf') format('truetype');
-}
-
-@font-face {
     font-family: 'Conthrax';
     src: url('./font/Conthrax-SemiBold.otf') format('truetype');
 }
@@ -422,4 +417,5 @@ li a {
 li a:hover {
     color: #ffffff;
     transform: scale(2.3);
+    left: -1vmin;
 }

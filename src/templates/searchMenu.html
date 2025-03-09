@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Search menu</title>
+    <title>GDBrowser | Search menu</title>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   </head>
   <body>
@@ -19,23 +19,39 @@
     <div class="leaderboardContainer">
       <div class="leaderboardHeader">
         <h1>SEARCH MENU</h1>
-        <p>Enter a username to search for a specific user.</p>
-      </div>
-      <form action="/findUser" method="post">
-        <input type="text" name="username" placeholder="Enter a Username" required>
-        <button type="submit">Search</button>
-      </form>
-      <h1>PINNED USERS</h1>
-      {{if .PinnedUsers}}
-        {{range .PinnedUsers}}
-          <form action="/findUser" method="post">
-            <input type="hidden" name="username" value="{{.}}">
-            <button type="submit" class="pinnedUserButton">- {{.}}</button>
+        <div class="filterContainer">
+          <form action="/searchMenu" method="get">
+            <label for="SearchFilter" style="color: white; font-family: 'Conthrax'; font-size: 2vmin;">search:</label>
+            <select name="SearchFilter" id="filter" onchange="this.form.submit()" style="font-family: 'Conthrax'; font-size: 2vmin; padding: 0.5vmin; margin-left: 1vmin; background-color: rgba(0, 0, 0, 0.7); color: white; border: 1px solid white; border-radius: 0.5vmin;">
+              <option value="user" {{if eq .CurrentFilter "user"}}selected{{end}}>User</option>
+              <option value="level" {{if eq .CurrentFilter "level"}}selected{{end}}>Level</option>
+            </select>
           </form>
+        </div>
+        {{if eq $.CurrentFilter "user"}}
+          <p>Enter a username to search for a specific user.</p>
+          <form action="/findUser" method="post">
+            <input type="text" name="username" placeholder="Enter a Username" required>
+            <button type="submit">Search</button>
+          </form>
+          <h1>PINNED USERS</h1>
+          {{if .PinnedUsers}}
+            {{range .PinnedUsers}}
+              <form action="/findUser" method="post">
+                <input type="hidden" name="username" value="{{.}}">
+                <button type="submit" class="pinnedUserButton">- {{.}}</button>
+              </form>
+            {{end}}
+          {{else}}
+            <p>No pinned users yet.</p>
+          {{end}}
+        {{else}}
+          <p>Enter a level ID to search for a specific level.</p>
+          <form action="/findLevel" method="post">
+            <input type="text" name="levelID" placeholder="Enter a Level ID" required>
+            <button type="submit">Search</button>
         {{end}}
-      {{else}}
-        <p>No pinned users yet.</p>
-      {{end}}
+      </div>
     </div>
   </div>
   <script src="/scripts/pageTransitions.js"></script>
