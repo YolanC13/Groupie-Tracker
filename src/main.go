@@ -277,12 +277,14 @@ func main() {
 
 	http.HandleFunc("/leaderboard/subtractPage", func(w http.ResponseWriter, r *http.Request) {
 		(*CurrentLeaderboardPage)--
-		http.Redirect(w, r, "/leaderboard", http.StatusSeeOther)
+		filter := r.URL.Query().Get("filter")
+		http.Redirect(w, r, "/leaderboard?filter="+filter, http.StatusSeeOther)
 	})
 
 	http.HandleFunc("/leaderboard/addPage", func(w http.ResponseWriter, r *http.Request) {
 		(*CurrentLeaderboardPage)++
-		http.Redirect(w, r, "/leaderboard", http.StatusSeeOther)
+		filter := r.URL.Query().Get("filter")
+		http.Redirect(w, r, "/leaderboard?filter="+filter, http.StatusSeeOther)
 	})
 
 	RunServer()

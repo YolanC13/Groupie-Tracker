@@ -21,24 +21,30 @@
         <p>Here are some frequently asked questions about GDSearch.</p>
         <div class="faq-box">
           <div class="faq-question">
-            <h2>What is GDSearch?</h2>
-            <p>GDSearch is a web application that allows you to explore user data from the game Geometry Dash. You can search for a user, view their information, and see the leaderboard of the top players in the game.</p>
+            <h2>What API does GDSearch use?</h2>
+            <p>The "GDBrowserAPI" by GDColon</p>
           </div>
           <div class="faq-question">
-            <h2>How do I search for a user?</h2>
-            <p>To search for a user, go to the Search menu and enter the username of the player you want to find. Click the Search button, and you will be directed to the user's information page.</p>
+            <h2>What endpoints are used?</h2>
+            <p>https://gdbrowser.com/api/leaderboard : Leaderboard</p>
+            <p>https://gdbrowser.com/api/profile/ + Username : User Information</p>
+            <p>https://gdbrowser.com/api/level/ + Level ID : Level Information</p>
           </div>
           <div class="faq-question">
-            <h2>How do I view the leaderboard?</h2>
-            <p>To view the leaderboard, click on the Leaderboard tab in the navigation bar. You can sort the leaderboard by stars, diamonds, or user coins by selecting the desired filter from the dropdown menu.</p>
+            <h2>What are the roots in this website?</h2>
+            <p>http://localhost:8080/mainMenu : Main menu.</p>
+            <p>http://localhost:8080/searchMenu : Search menu.</p>
+            <p>http://localhost:8080/findUser : User stat menu.</p>
+            <p>http://localhost:8080/findLevel : Level stat menu.</p>
+            <p>http://localhost:8080/faqMenu : FAQ menu (you are here).</p>
+            <p>http://localhost:8080/leaderboard : Leaderboard menu.</p>
+            <p>http://localhost:8080/leaderboard/subtractPage : Previous Page.</p>
+            <p>http://localhost:8080/leaderboard/addPage : Next Page.</p>
+            <p>http://localhost:8080/pinUser : Pin selected user</p>
+            <p>http://localhost:8080/unPinUser : Unpin selected user</p>
           </div>
-          <div class="faq-question">
-            <h2>How do I pin a user?</h2>
-            <p>To pin a user, search for the user you want to pin and click the Pin button on their information page. The user will be added to your pinned users list on the Search menu for easy access.</p>
-          </div>
-          <div class="faq-question">
-            <h2>How do I unpin a user?</h2>
-            <p>To unpin a user,
+        </div>
+      </div>
   </body>
 </html>
 {{end}}

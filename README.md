@@ -1,6 +1,6 @@
 # Groupie-Tracker
 
-Bienvenue dans Le Supplice du Pendard !
+Bienvenue dans GDSearch !
 
 GDSearch est la destination ultime pour explorer les données des utilisateurs du jeu Geometry Dash !
 Vous pouvez rechercher un utilisateur, afficher ses informations et voir le classement des meilleurs joueurs du jeu.
@@ -28,7 +28,9 @@ Liste des roots du site web:
 
     http://localhost:8080/searchMenu : Page de recherche d'utilisateurs.
 
-    http://localhost:8080/findUser : Page statistique du joueur.
+    http://localhost:8080/findUser : Page statistique de l'utilisateur.
+
+    http://localhost:8080/findLevel : Page statistique du niveau.
 
     http://localhost:8080/faqMenu : Page des à propos.
 

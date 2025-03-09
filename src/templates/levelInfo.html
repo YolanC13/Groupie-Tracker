@@ -17,34 +17,51 @@
     </nav>
     <div class="leaderboardContainer">
       <h1>{{.Name}}</h1>
+      <h2 class="author-text">by {{.Author}}</h2>
       <p>{{.Description}}</p>
     </div>
     <div class="userInfo-box">
       <div class="stats-container">
         <table class="user-stats-table">
           <tr class="stat-row">
-            <td class="stat-text"><h2>Author ID:</h2></td>
-            <td><span>{{.Author}}</span></td>
+            <td class="stat-text"><h2>{{.Difficulty}}</h2></td>
+            {{if eq .Difficulty "Easy"}}
+              <td><img src="/images/easy.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Normal"}}
+              <td><img src="/images/normal.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Hard"}}
+              <td><img src="/images/hard.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Harder"}}
+              <td><img src="/images/harder.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Insane"}}
+              <td><img src="/images/insane.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Easy Demon"}}
+              <td><img src="/images/demon-easy.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Medium Demon"}}
+              <td><img src="/images/demon-medium.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Hard Demon"}}
+              <td><img src="/images/demon-hard.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Insane Demon"}}
+              <td><img src="/images/demon-insane.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Extreme Demon"}}
+              <td><img src="/images/demon-extreme.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Auto"}}
+              <td><img src="/images/auto.png" class="stat-icon"></td>
+            {{else if eq .Difficulty "Unrated"}}
+              <td><img src="/images/unrated.png" class="stat-icon"></td>
+            {{end}}
           </tr>
           <tr class="stat-row">
-            <td class="stat-text"><h2>Difficulty:</h2></td>
-            <td><span>{{.Difficulty}}</span></td>
+            <td class="stat-text"><h2>{{.Length}}</h2></td>
+            <td><img src="/images/time.png" class="stat-icon"></td>
           </tr>
           <tr class="stat-row">
-            <td class="stat-text"><h2>Length:</h2></td>
-            <td><span>{{.Length}}</span></td>
+            <td class="stat-text"><h2>{{.Downloads}}</h2></td>
+            <td><img src="/images/download.png" class="stat-icon"></td>
           </tr>
           <tr class="stat-row">
-            <td class="stat-text"><h2>Downloads:</h2></td>
-            <td><span>{{.Downloads}}</span></td>
-          </tr>
-          <tr class="stat-row">
-            <td class="stat-text"><h2>Likes:</h2></td>
-            <td><span>{{.Likes}}</span></td>
-          </tr>
-          <tr class="stat-row">
-            <td class="stat-text"><h2>Song ID:</h2></td>
-            <td><span>{{.SongName}}</span></td>
+            <td class="stat-text"><h2>{{.Likes}}</h2></td>
+            <td><img src="/images/like.png" class="stat-icon"></td>
           </tr>
         </table>
       </div>
