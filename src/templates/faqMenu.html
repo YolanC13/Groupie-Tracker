@@ -2,10 +2,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GDBrowser | FAQ</title>
+    <title>GDSearch | FAQ</title>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+    <style>
+      .faq-box {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: #ffffff;
+        max-width: 80%;
+        margin: auto;
+        padding: 3vmin;
+        border-radius: 2vmin;
+        text-align: left;
+        filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+      }
+      
+      .faq-question {
+        margin-bottom: 3vmin;
+        padding-bottom: 2vmin;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .faq-question:last-child {
+        border-bottom: none;
+      }
+      
+      .faq-question h2 {
+        color: #ffef00;
+        font-size: 3.5vmin;
+        margin-bottom: 1vmin;
+      }
+      
+      .faq-question p {
+        font-size: 2.2vmin;
+        line-height: 1.6;
+      }
+      
+      .faq-list li {
+        display: block;
+        margin-bottom: 1vmin;
+        font-family: 'Conthrax';
+        font-size: 2.2vmin;
+        color: #ffffff;
+      }
+      
+      .endpoint {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 1vmin;
+        border-radius: 1vmin;
+        font-family: 'Conthrax';
+        font-size: 2vmin;
+        margin-bottom: 1vmin;
+      }
+    </style>
   </head>
   <body>
+    <video autoplay muted loop id="myVideo">
+      <source src="/videos/video.mp4" type="video/mp4">
+    </video>
+    
     <nav class="navbar">
       <div class="navdiv">
         <ul>
@@ -15,47 +69,98 @@
         </ul>
       </div>
     </nav>
+    
     <div class="contentContainer">
       <div class="leaderboardContainer">
-        <h1>FAQ</h1>
-        <p>Here are some frequently asked questions about GDSearch. (Check the README FOR MORE INFO)</p>
+        <h1>FAQ & ABOUT</h1>
+        <p>Tout ce que vous devez savoir sur GDSearch</p>
+        
         <div class="faq-box">
           <div class="faq-question">
-            <h2>What API does GDSearch use?</h2>
-            <p>The "GDBrowserAPI" by GDColon</p>
-          </div>
-          <div class="faq-question">
-            <h2>What endpoints are used?</h2>
-            <p>https://gdbrowser.com/api/leaderboard : Leaderboard</p>
-            <p>https://gdbrowser.com/api/profile/ + Username : User Information</p>
-            <p>https://gdbrowser.com/api/level/ + Level ID : Level Information</p>
-          </div>
-          <div class="faq-question">
-            <h2>What are the roots in this website?</h2>
-            <p>http://localhost:8080/mainMenu : Main menu.</p>
-            <p>http://localhost:8080/searchMenu : Search menu.</p>
-            <p>http://localhost:8080/findUser : User stat menu.</p>
-            <p>http://localhost:8080/findLevel : Level stat menu.</p>
-            <p>http://localhost:8080/faqMenu : FAQ menu (you are here).</p>
-            <p>http://localhost:8080/leaderboard : Leaderboard menu.</p>
-            <p>http://localhost:8080/leaderboard/subtractPage : Previous Page.</p>
-            <p>http://localhost:8080/leaderboard/addPage : Next Page.</p>
-            <p>http://localhost:8080/pinUser : Pin selected user</p>
-            <p>http://localhost:8080/unPinUser : Unpin selected user</p>
-          </div>
-          <div class="faq-question">
-            <h2>How did I come up with the idea for this project?</h2>
+            <h2>Qu'est-ce que GDSearch ?</h2>
             <p>
-              To complete this project, I first looked for an API; unfortunately, I couldn't find one that suited me. 
-              So, I turned to an API for the game Geometry Dash. Indeed, Geometry Dash is a game that I really enjoy, 
-              so it was important to me to make it my project. Unfortunately, the game does not have an official API, 
-              so I had to turn to an unofficial alternative: GDBrowserAPI by GDColon. Once I had selected my API, 
-              I started directly with the back-end of my site, then moved on to the front-end, making sure to add 
-              features one by one to stay organized.
+              GDSearch est un outil permettant d'explorer les données des utilisateurs du jeu Geometry Dash. 
+              Ce projet a été réalisé par Yolan Chiotti dans le cadre d'un projet à Ynov.
             </p>
+            <p>Fonctionnalités principales :</p>
+            <ul class="faq-list" style="padding-left: 3vmin;">
+              <li>• Recherche d'utilisateurs et affichage de leurs statistiques</li>
+              <li>• Consultation du classement des meilleurs joueurs</li>
+            </ul>
+          </div>
+          
+          <div class="faq-question">
+            <h2>Comment lancer l'application ?</h2>
+            <p>Pour accéder au site :</p>
+            <ol class="faq-list" style="padding-left: 3vmin;">
+              <li>1. Lancez l'exécutable Launcher.exe disponible dans le dossier src</li>
+              <li>2. Ouvrez votre navigateur et entrez l'adresse : http://localhost:8080</li>
+            </ol>
+          </div>
+          
+          <div class="faq-question">
+            <h2>Que puis-je rechercher ?</h2>
+            <p>Vous pouvez rechercher :</p>
+            <ul class="faq-list" style="padding-left: 3vmin;">
+              <li>• Des noms d'utilisateurs comme Serponge ou Split72</li>
+              <li>• Des niveaux via leur ID comme 10565740, 6508283 ou 40638411</li>
+            </ul>
+          </div>
+          
+          <div class="faq-question">
+            <h2>Quelle API est utilisée ?</h2>
+            <p>GDSearch utilise l'API GDBrowser créée par GDColon. Voici les endpoints principaux :</p>
+            <div class="endpoint">https://gdbrowser.com/api/leaderboard</div>
+            <div class="endpoint">https://gdbrowser.com/api/profile/{nom_utilisateur}</div>
+            <div class="endpoint">https://gdbrowser.com/api/level/{id_niveau}</div>
+          </div>
+          
+          <div class="faq-question">
+            <h2>Comment le projet a-t-il été développé ?</h2>
+            <p>
+              Initialement, j'ai exploré différentes APIs, mais aucune ne correspondait à mes attentes. 
+              En tant que fan de Geometry Dash, j'ai choisi d'utiliser l'API non officielle GDBrowserAPI.
+            </p>
+            <p>Le développement s'est déroulé en plusieurs phases :</p>
+            <ol class="faq-list" style="padding-left: 3vmin;">
+              <li>1. Développement du back-end</li>
+              <li>2. Mise en place du front-end</li>
+              <li>3. Ajout progressif des fonctionnalités</li>
+            </ol>
+            <p>
+              J'ai décomposé le projet en différentes phases, planifié chaque étape en suivant une approche 
+              itérative et utilisé diverses ressources pour garantir un projet bien structuré.
+            </p>
+          </div>
+          
+          <div class="faq-question">
+            <h2>Quelles sont les routes du site ?</h2>
+            <p><strong>Pages principales :</strong></p>
+            <ul class="faq-list" style="padding-left: 3vmin;">
+              <li>• Accueil : /mainMenu</li>
+              <li>• Recherche : /searchMenu</li>
+              <li>• Profil utilisateur : /findUser</li>
+              <li>• Statistiques niveau : /findLevel</li>
+              <li>• FAQ : /faqMenu</li>
+            </ul>
+            
+            <p><strong>Leaderboard :</strong></p>
+            <ul class="faq-list" style="padding-left: 3vmin;">
+              <li>• Global : /leaderboard</li>
+              <li>• Filtré par étoiles : /leaderboard?filter=stars</li>
+              <li>• Filtré par diamants : /leaderboard?filter=diamonds</li>
+              <li>• Filtré par pièces : /leaderboard?filter=userCoins</li>
+            </ul>
+        
+            <p><strong>Autres fonctionnalités :</strong></p>
+            <ul class="faq-list" style="padding-left: 3vmin;">
+              <li>• Navigation : /leaderboard/subtractPage et /leaderboard/addPage</li>
+              <li>• Épingler/Désépingler : /pinUser et /unPinUser</li>
+            </ul>
           </div>
         </div>
       </div>
+    </div>
   </body>
 </html>
 {{end}}

@@ -408,6 +408,55 @@ span {
     margin-top: -3.4vmin;
 }
 
+.faq-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    max-width: 80%;
+    margin: auto;
+    padding: 3vmin;
+    border-radius: 2vmin;
+    text-align: left;
+    filter: drop-shadow(8px 8px 60px rgba(255, 255, 255, 0.33));
+}
+  
+.faq-question {
+    margin-bottom: 3vmin;
+    padding-bottom: 2vmin;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+  
+.faq-question:last-child {
+    border-bottom: none;
+}
+  
+.faq-question h2 {
+    color: #ffef00;
+    font-size: 3.5vmin;
+    margin-bottom: 1vmin;
+}
+  
+.faq-question p {
+    font-size: 2.2vmin;
+    line-height: 1.6;
+}
+  
+.faq-list li {
+    display: block;
+    margin-bottom: 1vmin;
+    font-family: 'Conthrax';
+    font-size: 2.2vmin;
+    color: #ffffff;
+}
+  
+.endpoint {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1vmin;
+    border-radius: 1vmin;
+    font-family: 'Conthrax';
+    font-size: 2vmin;
+    margin-bottom: 1vmin;
+}
+
 li {
     list-style: none; 
     display: inline-block;
