@@ -38,7 +38,7 @@ GDSearch exploite l'API [GDBrowser](https://gdbrowser.com/api), développée par
 
 ### Choix de l'API
 
-Initialement, j'ai exploré différentes APIs (Amazon, Spotify, etc.), mais aucune ne correspondait à mes attentes. En tant que fan de *Geometry Dash*, j'ai donc choisi d'utiliser une API non officielle : **GDBrowserAPI** de GDColon.
+Initialement, j'ai exploré différentes APIs (Amazon, Spotify, etc.), mais aucune ne correspondait à mes attentes. En tant que joueur du jeu vidéo Geometry Dash, j'ai donc choisi d'utiliser une API non officielle : **GDBrowserAPI** de GDColon.
 
 ### Processus de développement
 
