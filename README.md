@@ -13,13 +13,22 @@ Comment acceder au jeu sur son navigateur:
 
 GDSearch utilise l'API "https://gdbrowser.com/api" créée par GDColon.
 
+
+Exemple de nom de joueurs : Serponge, Split72
+Exemple d'ID de niveau : 10565740, 6508283, 40638411
+
+Pour réaliser ce projet, j'ai d'abord cherché une API de site Internet (Amazon, Spotify etc) ; hélas, je n'en trouvais pas qui me plaisait. Je me suis donc tourné vers une API du jeu Geometry Dash. En effet, Geometry Dash est un jeu que j'apprécie beaucoup, cela me tenait donc à cœur d'en faire mon projet. Malheureusement, le jeu ne possède pas d'API officielle, donc j'ai dû me tourner vers un équivalent non officiel : GDBrowserAPI de GDColon.
+
+Une fois mon API sélectionnée, j'ai directement commencé par le back-end de mon site, puis par le front-end, en prenant bien soin de rajouter des fonctionnalités les unes après les autres pour ne pas m'éparpiller.
+
+
 Liste des endpoints utilisés:
 
     https://gdbrowser.com/api/leaderboard : Récupération du leaderboard
 
     https://gdbrowser.com/api/profile/ + Nom d'utilisateur : Récupération des statistiques de l'utilisateur
 
-    https://gdbrowser.com/api/level/ + ID du level : Récupération des statistiques du level
+    https://gdbrowser.com/api/level/ + ID du niveau : Récupération des statistiques du level
 
 
 Liste des roots du site web:
